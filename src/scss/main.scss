@@ -1,0 +1,25 @@
+@import "~notosanskr-hestia-scss/scss/NotoSansKR-Hestia";
+@import "~vuetify/src/styles/main.sass";
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#app {
+  font-family: 'Noto Sans KR', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.view {
+  flex: 1 0 auto;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
