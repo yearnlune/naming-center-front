@@ -3,8 +3,8 @@
         <v-container fluid class="sign">
             <v-row>
                 <v-col>
-                    abc
-                    <text-field label="aa" placeholder="LOGIN"/>
+                    <v-text-field placeholder="ID"></v-text-field>
+                    <v-text-field placeholder="PW"></v-text-field>
                 </v-col>
             </v-row>
         </v-container>
@@ -12,12 +12,15 @@
 </template>
 
 <script lang="ts">
-    import { Component, Vue } from "vue-property-decorator";
+    import {Component, Prop, Vue} from "vue-property-decorator";
     @Component({
         name: "SignInForm"
     })
 
     export default class SignInForm extends Vue {
+        @Prop({default: false})
+        private loading!: boolean;
+
     }
 
 </script>
