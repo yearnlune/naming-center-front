@@ -1,8 +1,8 @@
 export interface RootState {
-    accountId: string
-    accountName: string
-    accountRole: AccountRole
-    accountJWT: string
+    accountId: string;
+    accountName: string;
+    accountRole: AccountRole;
+    accountJWT: string;
 }
 
 export enum AccountRole {

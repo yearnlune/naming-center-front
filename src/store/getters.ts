@@ -1,6 +1,6 @@
 import {AccountRole, RootState} from "@/store/types";
 
-const getters: any = {
+const getters = {
     getAccountId: (state: RootState) => state.accountId,
     getAccountName: (state: RootState) => state.accountName,
     getAccountRole: (state: RootState) => state.accountRole,

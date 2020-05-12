@@ -3,8 +3,24 @@
         <v-container fluid class="sign">
             <v-row>
                 <v-col>
-                    <v-text-field placeholder="ID"></v-text-field>
-                    <v-text-field placeholder="PW"></v-text-field>
+                    <v-form>
+                        <v-text-field
+                                id="id-input"
+                                placeholder="ID"
+                                v-model="userId"
+                                :label="userId ? 'ID': ''"
+                                autofocus
+                        ></v-text-field>
+                        <v-text-field
+                                placeholder="PW"
+                                v-model="userPassword"
+                                :label="userPassword ? 'PW': ''"
+                                :type="showPassword ? 'text' : 'password'"
+                                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                @click:append="showPassword = !showPassword"
+                        ></v-text-field>
+                        <v-btn color="primary" :disabled="!validation" :loading="loading" @click="login">LOGIN</v-btn>
+                    </v-form>
                 </v-col>
             </v-row>
         </v-container>
@@ -12,15 +28,36 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from "vue-property-decorator";
-    @Component({
-        name: "SignInForm"
-    })
+    import {Component, Vue} from "vue-property-decorator";
+    import accountService, {AccountService, ApiPath, LoginRequest} from "@/service/accountService";
 
+    @Component
     export default class SignInForm extends Vue {
-        @Prop({default: false})
-        private loading!: boolean;
+        private showPassword = false;
+        private userId = '';
+        private userPassword = '';
+        private loading = false;
+        private accountService: AccountService = accountService();
 
+        private get validation(): boolean {
+            let isValidation = false;
+            if (this.userId && this.userPassword) {
+                isValidation = true;
+            }
+            return isValidation;
+        }
+
+        private login() {
+            this.loading = true;
+            this.accountService.restfulGet(ApiPath.LOGIN, this.loginRequestPayload)
+            .then((response) => {
+                console.log(response)
+            });
+        }
+
+        private get loginRequestPayload(): LoginRequest {
+            return {id: this.userId, password: this.userPassword};
+        }
     }
 
 </script>

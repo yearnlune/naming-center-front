@@ -6,7 +6,6 @@
 
 
 <script lang="ts">
-
     import SignInForm from "@/components/account/SignInForm.vue";
     import {Component, Vue} from "vue-property-decorator";
 
@@ -18,7 +17,6 @@
     })
 
     export default class Login extends Vue {
-
     }
 </script>
 
