@@ -2,6 +2,7 @@ import {AccountRole, RootState} from "@/store/types";
 
 const getters = {
     getAccountId: (state: RootState) => state.accountId,
+    getAccountIdx: (state: RootState) => state.accountIdx,
     getAccountName: (state: RootState) => state.accountName,
     getAccountRole: (state: RootState) => state.accountRole,
     getAccountJWT: (state: RootState) => state.accountJWT,

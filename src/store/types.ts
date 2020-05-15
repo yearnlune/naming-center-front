@@ -1,5 +1,6 @@
 export interface RootState {
     accountId: string;
+    accountIdx: number;
     accountName: string;
     accountRole: AccountRole;
     accountJWT: string;
