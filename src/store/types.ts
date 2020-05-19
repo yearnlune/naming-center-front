@@ -15,3 +15,11 @@ export enum AccountRole {
 export enum RootMutation {
     LOGIN = "LOGIN"
 }
+
+export interface LoginResponse {
+    id: string;
+    idx: number;
+    name: string;
+    role: AccountRole;
+    jwt: string;
+}

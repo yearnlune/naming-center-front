@@ -1,14 +1,14 @@
 
 import {MutationTree} from "vuex";
-import {RootState, RootMutation} from "@/store/types";
+import {RootState, RootMutation, LoginResponse} from "@/store/types";
 
 const mutations: MutationTree<RootState> = {
-    [RootMutation.LOGIN]: (state: RootState, payload: RootState) => {
-        state.accountId = payload.accountId;
-        state.accountIdx = payload.accountIdx;
-        state.accountName = payload.accountName;
-        state.accountRole = payload.accountRole;
-        state.accountJWT = payload.accountJWT;
+    [RootMutation.LOGIN]: (state: RootState, payload: LoginResponse) => {
+        state.accountId = payload.id;
+        state.accountIdx = payload.idx;
+        state.accountName = payload.name;
+        state.accountRole = payload.role;
+        state.accountJWT = payload.jwt;
     },
 }
 
