@@ -28,10 +28,9 @@ const routes: Array<RouteConfig> = [
             }
 
             accountService().restfulPost(ApiPath.VALIDATE, token).then(() => {
-                console.log("AVAILABLE TOKEN");
                 next();
-            }).catch((error) => {
-                console.error(error);
+            }).catch(() => {
+                next({path: '/signin'});
             });
         }
     },
