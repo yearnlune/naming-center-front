@@ -7,15 +7,19 @@ export interface LoginRequest {
     password: string;
 }
 
+export interface TokenValidationRequest {
+    jwt: string;
+}
+
 export enum ApiPath {
     LOGIN = 'login',
-    REGISTER = 'accounts'
+    REGISTER = 'accounts',
+    VALIDATE = 'validate'
 }
 
 export class AccountService extends BaseService {
     constructor() {
         super();
-        this.apiOriginPath = '';
     }
 }
 

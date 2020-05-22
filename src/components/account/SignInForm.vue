@@ -49,10 +49,21 @@
 
         private login() {
             this.loading = true;
-            this.accountService.restfulGet(ApiPath.LOGIN, this.loginRequestPayload)
-            .then((response) => {
-                console.log(response)
-            });
+            this.accountService.restfulPost(ApiPath.LOGIN, this.loginRequestPayload)
+                .then((response) => {
+                    this.$store.dispatch('loginAccount', response.data);
+
+                    if (response.data.jwt) {
+                        window.localStorage.setItem("jwt", response.data.jwt);
+                        this.$router.push("Search");
+                    }
+
+                    this.loading = false;
+                })
+                .catch((error) => {
+                    console.error(error);
+                    this.loading = false;
+                })
         }
 
         private get loginRequestPayload(): LoginRequest {
