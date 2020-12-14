@@ -4,7 +4,7 @@
             <v-row class="col-6">
                 <v-col>
                     <v-form>
-                        <v-autocomplete
+                        <v-combobox
                                 id="search-input"
                                 v-model="search"
                                 prepend-inner-icon="mdi-magnify"
@@ -16,7 +16,7 @@
                                 clearable
                                 hide-selected
                                 autofocus
-                        ></v-autocomplete>
+                        ></v-combobox>
                     </v-form>
                 </v-col>
             </v-row>
@@ -39,7 +39,7 @@
         private loading = false;
         private searchService: SearchService = searchService();
         private timer: NodeJS.Timeout | number = 0;
-        private TYPING_PENDING_TIMEOUT = 200;
+        private TYPING_PENDING_TIMEOUT = 500;
 
         @Watch("searchItem")
         onWatchSearchItem(neo: string) {
