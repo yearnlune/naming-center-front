@@ -4,7 +4,7 @@ let INSTANCE: SearchService;
 
 export enum ApiPath {
     SEARCH = 'naming',
-    AUTOCOMPLETE = 'naming/autocomplete'
+    AUTOCOMPLETE = 'autocomplete'
 }
 
 export class SearchService extends BaseService {

@@ -43,9 +43,9 @@
 
         @Watch("searchItem")
         onWatchSearchItem(neo: string) {
-            let item = neo;
-            if (!item) {
-                item = '';
+            const item = neo;
+            if (!item || item.length === 0) {
+                return;
             }
             this.getAutocomplete(item);
         }
@@ -57,7 +57,7 @@
 
             this.timer = setTimeout(() => {
                 this.loading = true;
-                this.searchService.restfulGet(ApiPath.AUTOCOMPLETE, naming)
+                this.searchService.restfulGet(ApiPath.SEARCH, naming, ApiPath.AUTOCOMPLETE)
                     .then((response) => {
                         this.autocompleteItems = response.data?.namingList || [];
                     }).catch((error) => {
