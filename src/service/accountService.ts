@@ -13,7 +13,7 @@ export interface TokenValidationRequest {
 
 export enum ApiPath {
     LOGIN = 'login',
-    REGISTER = 'accounts',
+    REGISTER = 'account',
     VALIDATE = 'validate'
 }
 
