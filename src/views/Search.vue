@@ -11,6 +11,7 @@
                                 :items="autocompleteItems"
                                 :search-input.sync="searchItem"
                                 :loading="loading"
+                                v-on:keyup.enter="searchKeyword"
                                 outlined
                                 rounded
                                 clearable
@@ -26,7 +27,7 @@
 
 <script lang="ts">
     import {Component, Vue, Watch} from "vue-property-decorator";
-    import searchService, {ApiPath, SearchService} from "@/service/searchService";
+    import {searchService, SearchService} from "@/service/searchService";
 
     @Component({
         name: "Search",
@@ -37,9 +38,9 @@
         private searchItem = '';
         private autocompleteItems = [];
         private loading = false;
-        private searchService: SearchService = searchService();
+        private searchService: SearchService = searchService;
         private timer: NodeJS.Timeout | number = 0;
-        private TYPING_PENDING_TIMEOUT = 500;
+        private readonly TYPING_PENDING_TIMEOUT = 500;
 
         @Watch("searchItem")
         onWatchSearchItem(neo: string) {
@@ -57,15 +58,24 @@
 
             this.timer = setTimeout(() => {
                 this.loading = true;
-                this.searchService.restfulGet(ApiPath.SEARCH, naming, ApiPath.AUTOCOMPLETE)
+                this.searchService.searchAutoComplete(naming)
                     .then((response) => {
-                        this.autocompleteItems = response.data?.namingList || [];
+                        this.autocompleteItems = response || [];
                     }).catch((error) => {
                     console.error(error);
                 }).finally(() => {
                     this.loading = false;
                 })
             }, this.TYPING_PENDING_TIMEOUT);
+        }
+
+        private searchKeyword() {
+            this.searchService.searchName(this.search)
+                .then(naming => {
+                    console.log(`SEARCH ${this.search}: ${JSON.stringify(naming)}`)
+                }).catch(e => {
+                console.error(e);
+            });
         }
     }
 </script>

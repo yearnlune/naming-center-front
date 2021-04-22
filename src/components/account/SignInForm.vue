@@ -18,8 +18,14 @@
                                 :type="showPassword ? 'text' : 'password'"
                                 :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                                 @click:append="showPassword = !showPassword"
+                                v-on:keyup.enter="login"
                         ></v-text-field>
-                        <v-btn color="primary" :disabled="!validation" :loading="loading" @click="login">LOGIN</v-btn>
+                        <v-btn color="primary"
+                               :disabled="!validation"
+                               :loading="loading"
+                               @click="login"
+                        >LOGIN
+                        </v-btn>
                     </v-form>
                 </v-col>
             </v-row>
@@ -29,7 +35,7 @@
 
 <script lang="ts">
     import {Component, Vue} from "vue-property-decorator";
-    import accountService, {AccountService, ApiPath, LoginRequest} from "@/service/accountService";
+    import {accountService, AccountService, ApiPath, LoginRequest} from "@/service/accountService";
 
     @Component
     export default class SignInForm extends Vue {
@@ -37,7 +43,7 @@
         private userId = '';
         private userPassword = '';
         private loading = false;
-        private accountService: AccountService = accountService();
+        private accountService: AccountService = accountService;
 
         private get validation(): boolean {
             let isValidation = false;

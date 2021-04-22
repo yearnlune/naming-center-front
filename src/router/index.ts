@@ -2,17 +2,18 @@ import Vue from 'vue'
 import VueRouter, {RouteConfig} from 'vue-router'
 import Login from "@/views/Login.vue";
 import Search from "@/views/Search.vue";
-import accountService, {ApiPath, TokenValidationRequest} from "@/service/accountService";
+import Result from "@/views/Result.vue";
+import {accountService, ApiPath, TokenValidationRequest} from "@/service/accountService";
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
     {
         path: '*',
-        redirect: '/',
+        redirect: '/search',
     },
     {
-        path: '/',
+        path: '/search',
         name: 'Search',
         component: Search,
         beforeEnter: (to, from, next) => {
@@ -27,7 +28,7 @@ const routes: Array<RouteConfig> = [
                 jwt: jwt
             }
 
-            accountService().restfulPost(ApiPath.VALIDATE, token).then(() => {
+            accountService.restfulPost(ApiPath.VALIDATE, token).then(() => {
                 next();
             }).catch(() => {
                 next({path: '/signin'});
@@ -39,9 +40,15 @@ const routes: Array<RouteConfig> = [
         name: 'Login',
         component: Login
     },
+    {
+        path: '/result',
+        name: 'Result',
+        component: Result
+    }
 ]
 
 const router = new VueRouter({
+    mode: "history",
     routes
 })
 

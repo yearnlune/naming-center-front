@@ -1,7 +1,5 @@
 import BaseService from "@/service/baseService";
 
-let INSTANCE: AccountService;
-
 export interface LoginRequest {
     id: string;
     password: string;
@@ -21,11 +19,11 @@ export class AccountService extends BaseService {
     constructor() {
         super();
     }
+
+    logout() {
+        localStorage.removeItem("jwt");
+        location.href = `/signin`;
+    }
 }
 
-export default function accountService(): AccountService {
-    if (!INSTANCE) {
-        INSTANCE = new AccountService();
-    }
-    return INSTANCE;
-}
+export const accountService: AccountService = new AccountService();
