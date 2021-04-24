@@ -1,6 +1,6 @@
 import {AccountRole, AccountState} from "@/store/modules/acccount/types";
 import {GetterTree} from "vuex";
-import {RootState} from "@/store/modules/types";
+import {RootState} from "@/store";
 
 const getters: GetterTree<AccountState, RootState> = {
     getAccountId: (state: AccountState) => state.accountId,
@@ -13,7 +13,8 @@ const getters: GetterTree<AccountState, RootState> = {
     },
     isAdmin: (state: AccountState) => {
         return state.accountRole === AccountRole.ADMIN;
-    }
+    },
+    hasAccount: (state: AccountState) => state.accountIdx > 0
 }
 
 export default getters;

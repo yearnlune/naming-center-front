@@ -4,7 +4,7 @@ import mutations from "@/store/modules/acccount/mutations"
 import actions from "@/store/modules/acccount/actions"
 import {AccountState} from "@/store/modules/acccount/types";
 import {Module} from "vuex";
-import {RootState} from "@/store/modules/types";
+import {RootState} from "@/store";
 
 export const AccountModule: Module<AccountState, RootState> = {
   namespaced: true,
