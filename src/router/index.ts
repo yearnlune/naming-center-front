@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter, {RouteConfig} from 'vue-router'
 import Login from "@/views/Login.vue";
 import Search from "@/views/Search.vue";
-import Result from "@/views/Result.vue";
 import {accountService, ApiPath, TokenValidationRequest} from "@/service/accountService";
 
 Vue.use(VueRouter)
@@ -39,11 +38,6 @@ const routes: Array<RouteConfig> = [
         path: '/signin',
         name: 'Login',
         component: Login
-    },
-    {
-        path: '/result',
-        name: 'Result',
-        component: Result
     }
 ]
 
